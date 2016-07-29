@@ -4,7 +4,7 @@ var t = new Trello('81f3812822bb14b2bf02ce18c5162f4e', '0fc93c1353a9d53731d7a241
 
 var winston = require('winston');
 winston.add(winston.transports.File, {
-  filename: 'productbot.log',
+  filename: '/var/log/productbot.log',
   colorize: true,
   prettyPrint: true,
   timestamp: true
