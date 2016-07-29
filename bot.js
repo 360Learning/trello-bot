@@ -52,13 +52,14 @@ t.get('/1/lists/' + inboxListId + '/cards', function(err, cards) {
       ping(card, function(toPing) {
         var comment = toPing + comments.template_error;
         setTimeout(function() {
+          // to avoid hitting rate limit
           t.post('/1/cards/' + cardId + '/actions/comments', {'text': comment}, function(err1) {
             if (err) winston.log('error', err1);
             t.put('/1/cards/' + cardId + '/idList', {'value': rejectedListId}, function(err2) {
               if (err) winston.log('error', err2);
             });
           });
-        }, 1000);
+        }, 500);
       });
     }
   });
