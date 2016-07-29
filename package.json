@@ -5,9 +5,20 @@
   "main": "bot.js",
   "dependencies": {
     "lodash": "^4.13.1",
-    "node-trello": "^1.1.2"
+    "node-trello": "^1.1.2",
+    "winston": "^2.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.1.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-config-airbnb-es5": "^1.0.9",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-config-standard": "^5.3.5",
+    "eslint-plugin-promise": "^2.0.0",
+    "eslint-plugin-react": "^5.2.2",
+    "eslint-plugin-standard": "^2.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
