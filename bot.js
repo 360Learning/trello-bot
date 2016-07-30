@@ -20,7 +20,7 @@ var inboxListId = '55a92e737874e3e2b36bd82b';
 
 // comments :
 var comments = {
-  'template_error': "Cette carte ne respecte pas le https://trello.com/c/x1maAmzK/144-template. Elle a été déplacée dans la colonne *rejected* pour le moment. Merci de la corriger avant de la réinsérer dans la colonne *Problème rencontré*. Cela améliorera grandement l'éfficacité de ce board. \n\n Pour plus d'informations sur le process, consulte le https://trello.com/c/sPshMymS/1-readme. \n\nTu peux aussi consulter les https://trello.com/c/tBB6lLsl/176-regles-de-traitement-des-feature-request-astuces-pour-ecrire-une-feature-request-qui-ira-rapidement-en-prod. \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*"
+  'template_error': "Cette carte ne respecte pas le https://trello.com/c/XKfHDD26/886-template. Elle a été déplacée dans la colonne *rejected* pour le moment. Merci de la corriger avant de la réinsérer dans la colonne *Problème rencontré*. Cela améliorera grandement l'éfficacité de ce board. \n\n Pour plus d'informations sur le process, consulte le https://trello.com/c/VPB71ybt/282-readme. \n\nTu peux aussi consulter les https://trello.com/c/tiIZesaB/950-regles-de-traitement-des-feature-request-astuces-pour-ecrire-une-feature-request-qui-ira-rapidement-en-prod. \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*"
 };
 
 function ping(card, callback) {
