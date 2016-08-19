@@ -23,7 +23,7 @@ var date = new Date(); // current date
 // comments :
 var comments = {
   'template_error': "Cette carte ne respecte pas le https://trello.com/c/XKfHDD26/886-template. Elle a été déplacée dans la colonne *rejected* pour le moment. Merci de la corriger avant de la réinsérer dans la colonne *Problème rencontré*. Cela améliorera grandement l'éfficacité de ce board. \n\n Pour plus d'informations sur le process, consulte le https://trello.com/c/VPB71ybt/282-readme. \n\nTu peux aussi consulter les https://trello.com/c/tiIZesaB/950-regles-de-traitement-des-feature-request-astuces-pour-ecrire-une-feature-request-qui-ira-rapidement-en-prod. \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*",
-  'abandonWarning': 'Cette carte a l\'air abandonnée, elle sera archivée dans 7j si aucune activité n\'est reprise. \n\n#DeadRejectedCardWarning \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*',
+  'abandonWarning': 'Cette carte a l\'air abandonnée, elle sera archivée dans 10j si aucune activité n\'est reprise. \n\n#DeadRejectedCardWarning \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*',
   'archiveNotice': 'Cette carte n\'a pas évolué depuis le précédent message, elle est donc considérée comme obsolète et va être archivée. N\'hésite pas à la réouvrir et à intéragir dessus si ce n\'est pas ce que tu souhaites. \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*'
 };
 function ping(card, callback) {
@@ -81,7 +81,7 @@ t.get('/1/lists/' + rejectedListId + '/cards', function(err, cards) {
   _.forEach(cards, function(card) {
     var cardId = card.id;
 
-    if ( Date.parse(card.dateLastActivity) < (date.getTime() - (7 * 24 * 60 * 60 * 1000) )) {
+    if ( Date.parse(card.dateLastActivity) < (date.getTime() - (10 * 24 * 60 * 60 * 1000) )) {
       t.get('/1/cards/' + cardId + '/actions', { filter: 'commentCard' }, function(err3, cardComments) {
         var lastComment = cardComments[0].data.text;
         if (_.includes(lastComment, '#DeadRejectedCardWarning')) {
