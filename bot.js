@@ -83,8 +83,6 @@ t.get('/1/lists/' + inboxListId + '/cards', function(err, cards) {
           }, 500);
         });
       }
-    } else {
-      console.log('ça marche');
     }
   });
   if (counter > 0) {
