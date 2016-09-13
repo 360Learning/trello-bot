@@ -11,12 +11,29 @@ winston.add(winston.transports.File, {
 });
 
 // Prod URIs:
-var rejectedListId = '5799e9ff1fc18aa4989c23d7';
 var inboxListId = '55a92e737874e3e2b36bd82b';
+var rejectedListId = '5799e9ff1fc18aa4989c23d7';
 
+
+// Care.inbox : 55a92e737874e3e2b36bd82b
+// Care.rejected: 5799e9ff1fc18aa4989c23d7
+//
+// Imagine.inbox : 57d18d04537bb6086624c216
+// Imagine.rejected: 57d18c86d58117d98b66352a
+//
+// Conquer.inbox : 57d05fdf520de02a1c07f7b6
+// Conquer.rejected: 57d05fd70e6ad807729ba3c8
+//
+// Engage.inbox : 57d18c3c54a11e7fa1669923
+// Engage.rejected: 57d18c42aaefdd097ed3f901
+//
+// Universities.inbox : 57d188dbeabcaeb09c09321b
+// Universities.rejected: 57d188d4705c5772f2bf7daa
+//
+//
 // Test URIs:
-// var rejectedListId = '579b614fd98e1f966d8b6a5c';
 // var inboxListId = '579b614fd98e1f966d8b6a5d';
+// var rejectedListId = '579b614fd98e1f966d8b6a5c';
 
 var date = new Date(); // current date
 
@@ -50,20 +67,24 @@ t.get('/1/lists/' + inboxListId + '/cards', function(err, cards) {
   }
   _.forEach(cards, function(card) {
     var cardId = card.id;
-    if (!_.includes(card.desc, 'Problème rencontré')) {
-      counter += 1;
-      ping(card, function(toPing) {
-        var comment = toPing + comments.template_error;
-        setTimeout(function() {
-          // to avoid hitting rate limit
-          t.post('/1/cards/' + cardId + '/actions/comments', {'text': comment}, function(err1) {
-            if (err) winston.log('error', err1);
-            t.put('/1/cards/' + cardId + '/idList', {'value': rejectedListId}, function(err2) {
-              if (err) winston.log('error', err2);
+    if (!_.includes(card.name.toLowerCase(), 'template') && !_.includes(card.name.toLowerCase(), 'readme')) {
+      if (!_.includes(card.desc, 'Problème rencontré')) {
+        counter += 1;
+        ping(card, function(toPing) {
+          var comment = toPing + comments.template_error;
+          setTimeout(function() {
+            // to avoid hitting rate limit
+            t.post('/1/cards/' + cardId + '/actions/comments', {'text': comment}, function(err1) {
+              if (err) winston.log('error', err1);
+              t.put('/1/cards/' + cardId + '/idList', {'value': rejectedListId}, function(err2) {
+                if (err) winston.log('error', err2);
+              });
             });
-          });
-        }, 500);
-      });
+          }, 500);
+        });
+      }
+    } else {
+      console.log('ça marche');
     }
   });
   if (counter > 0) {
