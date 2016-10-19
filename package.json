@@ -1,0 +1,38 @@
+{
+  "name": "product_bot",
+  "version": "1.0.0",
+  "description": "A bot to enforce the product trello process",
+  "main": "bot.js",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "node-trello": "^1.1.2",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-es5": "^1.0.9",
+    "eslint-plugin-react": "^6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/edelans/product_bot.git"
+  },
+  "keywords": [
+    "bot",
+    "trello",
+    "product",
+    "360Learning",
+    "nazi",
+    "police"
+  ],
+  "author": "edelans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/edelans/product_bot/issues"
+  },
+  "homepage": "https://gitlab.com/edelans/product_bot#README"
+}
