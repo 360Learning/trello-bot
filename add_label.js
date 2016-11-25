@@ -14,9 +14,7 @@ winston.add(winston.transports.File, {
 
 // Prod URIs:
 // inbox, rejected, reflexion
-const listIDsToLabelize = ['55a92e737874e3e2b36bd82b',
-  '5799e9ff1fc18aa4989c23d7',
-];
+const listIDsToLabelize = ['55a92e737874e3e2b36bd82b'];
 
 // id of label to add
 // here : label "Check Seb" (no color)
