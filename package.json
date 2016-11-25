@@ -9,10 +9,11 @@
     "winston": "^2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
-    "eslint": "^3.2.2",
-    "eslint-config-airbnb-es5": "^1.0.9",
-    "eslint-plugin-react": "^6.0.0"
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
