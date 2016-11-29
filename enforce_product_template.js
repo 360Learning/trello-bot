@@ -70,7 +70,7 @@ function ping(card, callback) {
     if (members.length > 0) {
       callback(`@${membersArray.join(', @')} :\n\n`);
     } else {
-      callback('@edelans, @julien_faure');
+      callback('@edelans, @julien_faure, ');
     }
   });
 }
