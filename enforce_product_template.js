@@ -120,34 +120,36 @@ function cleanRejected(board) {
 
       if (Date.parse(card.dateLastActivity) < (date.getTime() - (10 * 24 * 60 * 60 * 1000))) {
         t.get(`/1/cards/${cardId}/actions`, { filter: 'commentCard' }, (err3, cardComments) => {
-          const lastComment = cardComments[0].data.text;
-          if (_.includes(lastComment, '#DeadRejectedCardWarning')) {
-            // comment and archive the card
-            archiveCounter += 1;
-            ping(card, (toPing) => {
-              const comment = toPing + comments.archiveNotice;
-              setTimeout(() => {
-                // to avoid hitting rate limit
-                t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
-                  if (err) winston.log(`error in board ${board.name}`, err1);
-                  t.put(`/1/cards/${cardId}/closed`, { value: 'true' }, (err2) => {
-                    if (err) winston.log(`error in board ${board.name}`, err2);
+          if (cardComments[0]) {
+            const lastComment = cardComments[0].data.text;
+            if (_.includes(lastComment, '#DeadRejectedCardWarning')) {
+              // comment and archive the card
+              archiveCounter += 1;
+              ping(card, (toPing) => {
+                const comment = toPing + comments.archiveNotice;
+                setTimeout(() => {
+                  // to avoid hitting rate limit
+                  t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
+                    if (err) winston.log(`error in board ${board.name}`, err1);
+                    t.put(`/1/cards/${cardId}/closed`, { value: 'true' }, (err2) => {
+                      if (err) winston.log(`error in board ${board.name}`, err2);
+                    });
                   });
-                });
-              }, 500);
-            });
-          } else {
-            // issue warning
-            warningCounter += 1;
-            ping(card, (toPing) => {
-              const comment = toPing + comments.abandonWarning;
-              setTimeout(() => {
-                // to avoid hitting rate limit
-                t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
-                  if (err) winston.log(`error in board ${board.name}`, err1);
-                });
-              }, 500);
-            });
+                }, 500);
+              });
+            } else {
+              // issue warning
+              warningCounter += 1;
+              ping(card, (toPing) => {
+                const comment = toPing + comments.abandonWarning;
+                setTimeout(() => {
+                  // to avoid hitting rate limit
+                  t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
+                    if (err) winston.log(`error in board ${board.name}`, err1);
+                  });
+                }, 500);
+              });
+            }
           }
         });
       }
