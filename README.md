@@ -33,6 +33,7 @@ You can also put them in your crontab :
 */15 * * * * /home/deploy/.nvm/versions/node/v4.5.0/bin/node /var/www/productbot/bot.js
 ```
 
+**Beware** : Remember to `export` your environment variables in `/etc/environment` to have them loaded for cron.
 
 
 
