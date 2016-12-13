@@ -30,8 +30,10 @@ You can also put them in your crontab :
 
 ```
 # product bot
-*/15 * * * * /home/deploy/.nvm/versions/node/v4.5.0/bin/node /var/www/productbot/bot.js
+*/15 * * * * /home/deploy/.nvm/versions/node/v4.5.0/bin/node /var/www/productbot/bot.js && curl -sm 30 k.wdt.io/<email-address>/<cronjob-name>?c=*/2_*_*_*_*
 ```
+
+The example cron config above make use of crontab.guru monitoring services. Make sure to replace the <placeholders> with your email address and some name for your cronjob. Should your cron job fail or not even start, you will receive an alert email. (By using this monitoring service, you agree to the Terms of Service and Privacy Policy.)
 
 **Beware** : Remember to `export` your environment variables in `/etc/environment` to have them loaded for cron.
 
