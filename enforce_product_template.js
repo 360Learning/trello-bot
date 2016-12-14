@@ -109,7 +109,7 @@ function cleanInbox(board) {
                   if (err) winston.log(`error in board ${board.name}`, err2);
                 });
               });
-            }, 500);
+            }, 100);
           });
         }
       }
@@ -148,7 +148,7 @@ function cleanRejected(board) {
                       if (err) winston.log(`error in board ${board.name}`, err2);
                     });
                   });
-                }, 500);
+                }, 100);
               });
             } else {
               // issue warning
@@ -160,7 +160,7 @@ function cleanRejected(board) {
                   t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
                     if (err) winston.log(`error in board ${board.name}`, err1);
                   });
-                }, 500);
+                }, 100);
               });
             }
           }
