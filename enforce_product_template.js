@@ -10,7 +10,7 @@ const t = new Trello(apiKey, token);
 const boards = {
   Care: {
     name: 'Care',
-    id: 'CBPPssjt'
+    id: 'CBPPssjt',
     inbox: '55a92e737874e3e2b36bd82b',
     rejected: '5799e9ff1fc18aa4989c23d7',
   },
