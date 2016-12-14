@@ -5,51 +5,63 @@ const token = process.env.TRELLO_TOKEN;
 const apiKey = process.env.TRELLO_API_KEY;
 const t = new Trello(apiKey, token);
 
+
+// Prod URIs:
+const boards = {
+  Care: {
+    name: 'Care',
+    inbox: '55a92e737874e3e2b36bd82b',
+    rejected: '5799e9ff1fc18aa4989c23d7',
+  },
+  Imagine: {
+    name: 'Imagine',
+    inbox: '57d18d04537bb6086624c216',
+    rejected: '57d18c86d58117d98b66352a',
+  },
+  Conquer: {
+    name: 'Conquer',
+    inbox: '57d05fdf520de02a1c07f7b6',
+    rejected: '57d05fd70e6ad807729ba3c8',
+  },
+  Engage: {
+    name: 'Engage',
+    inbox: '57d18c3c54a11e7fa1669923',
+    rejected: '57d18c42aaefdd097ed3f901',
+  },
+  Universities: {
+    name: 'Universities',
+    inbox: '579b614fd98e1f966d8b6a5d',
+    rejected: '579b614fd98e1f966d8b6a5c',
+  },
+  Test: {
+    name: 'Test',
+    inbox: '579b614fd98e1f966d8b6a5d',
+    rejected: '579b614fd98e1f966d8b6a5c',
+  },
+};
+
+
+// enable the user to run the script on a custom file
+let targetBoard;
+if (process.argv.length === 2) {
+  throw new Error('Missing arguments. Script must be executed with at least one arg : Care / Imagine / Conquer / Engage / Universities / Test');
+} else if (process.argv.length === 3) {
+  targetBoard = _.capitalize(process.argv[2]);
+  if (!Object.keys(boards).includes(targetBoard)) {
+    throw new Error('Wrong arguments. Script must be executed with one arg of : Care / Imagine / Conquer / Engage / Universities / Test');
+  }
+} else {
+  throw new Error('Too many arguments.');
+}
+
 const winston = require('winston');
+
 winston.add(winston.transports.File, {
   filename: '/var/log/productbot.log',
   colorize: true,
   prettyPrint: true,
   timestamp: true,
 });
-
-// Prod URIs:
-const boards = [
-  {
-    name: 'Care',
-    inbox: '55a92e737874e3e2b36bd82b',
-    rejected: '5799e9ff1fc18aa4989c23d7',
-  },
-  {
-    name: 'Imagine',
-    inbox: '57d18d04537bb6086624c216',
-    rejected: '57d18c86d58117d98b66352a',
-  },
-  {
-    name: 'Conquer',
-    inbox: '57d05fdf520de02a1c07f7b6',
-    rejected: '57d05fd70e6ad807729ba3c8',
-  },
-  {
-    name: 'Engage',
-    inbox: '57d18c3c54a11e7fa1669923',
-    rejected: '57d18c42aaefdd097ed3f901',
-  },
-  {
-    name: 'Universities',
-    inbox: '579b614fd98e1f966d8b6a5d',
-    rejected: '579b614fd98e1f966d8b6a5c',
-  },
-];
-
-// Test URIs:
-// boards = [
-//   {
-//     'name': 'Test board',
-//     'inbox': '579b614fd98e1f966d8b6a5d',
-//     'rejected': '579b614fd98e1f966d8b6a5c'
-//   }
-// ];
 
 
 const date = new Date(); // current date
@@ -60,6 +72,7 @@ const comments = {
   abandonWarning: 'Cette carte a l\'air abandonnée, elle sera archivée dans 10j si aucune activité n\'est reprise. \n\n#DeadRejectedCardWarning \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*',
   archiveNotice: 'Cette carte n\'a pas évolué depuis le précédent message, elle est donc considérée comme obsolète et va être archivée. N\'hésite pas à la réouvrir et à intéragir dessus si ce n\'est pas ce que tu souhaites. \n\n--\n*Ceci est un message automatique du **Product Bot** ;)*',
 };
+
 function ping(card, callback) {
   t.get(`/1/cards/${card.id}/members`, (err, members) => {
     if (err) winston.log('error', err);
@@ -163,7 +176,6 @@ function cleanRejected(board) {
 
 winston.log('info', 'Product bot script started ');
 
-_.forEach(boards, (board) => {
-  cleanInbox(board);
-  cleanRejected(board);
-});
+
+cleanInbox(boards[targetBoard]);
+cleanRejected(boards[targetBoard]);
