@@ -30,12 +30,18 @@ You can also put them in your crontab :
 
 ```
 # product bot
-*/15 * * * * /home/deploy/.nvm/versions/node/v4.5.0/bin/node /var/www/productbot/bot.js && curl -sm 30 k.wdt.io/<email-address>/<cronjob-name>?c=*/2_*_*_*_*
+*/15 * * * * /home/deploy/.nvm/versions/node/v6.9.1/bin/node /var/www/productbot/enforce_product_template.js Care && curl -fsS --retry 3 https://hchk.io/d033366b-f8d8-48f8-b2f7-bcb725432c9f > /dev/null
+*/15 * * * * /home/deploy/.nvm/versions/node/v6.9.1/bin/node /var/www/productbot/enforce_product_template.js Imagine && curl -fsS --retry 3 https://hchk.io/e1bb5c8b-c4bd-4324-b7c0-14489191be11 > /dev/null
+*/15 * * * * /home/deploy/.nvm/versions/node/v6.9.1/bin/node /var/www/productbot/enforce_product_template.js Conquer curl -fsS --retry 3 https://hchk.io/ffad8ab4-7e2e-4342-abaa-7de3ee956302 > /dev/null
+*/15 * * * * /home/deploy/.nvm/versions/node/v6.9.1/bin/node /var/www/productbot/enforce_product_template.js Universities && curl -fsS --retry 3 https://hchk.io/2e05a929-c8b2-45b2-a843-c4507985866c > /dev/null
+*/15 * * * * /home/deploy/.nvm/versions/node/v6.9.1/bin/node /var/www/productbot/enforce_product_template.js Engage && curl -fsS --retry 3 https://hchk.io/2863f42e-c71f-4479-a21e-1fd3ae2f235f > /dev/null
+
+
 ```
 
-The example cron config above make use of crontab.guru monitoring services. Make sure to replace the <placeholders> with your email address and some name for your cronjob. Should your cron job fail or not even start, you will receive an alert email. (By using this monitoring service, you agree to the Terms of Service and Privacy Policy.)
+The example cron config above make use of https://healthchecks.io free monitoring service. Should your cron job fail or not even start, you will receive an alert email.
 
-**Beware** : Remember to `export` your environment variables in `/etc/environment` to have them loaded for cron.
+**Beware** : Remember to `export` your environment variables in `/etc/environment` to have them loaded and available for cron.
 
 
 
