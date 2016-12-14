@@ -10,31 +10,37 @@ const t = new Trello(apiKey, token);
 const boards = {
   Care: {
     name: 'Care',
+    id: 'CBPPssjt'
     inbox: '55a92e737874e3e2b36bd82b',
     rejected: '5799e9ff1fc18aa4989c23d7',
   },
   Imagine: {
     name: 'Imagine',
+    id: 'l1IAlCzO',
     inbox: '57d18d04537bb6086624c216',
-    rejected: '57d18c86d58117d98b66352a',
+    rejected: '57d18cfff617bee8262f94e9',
   },
   Conquer: {
     name: 'Conquer',
+    id: 'pji1kHYk',
     inbox: '57d05fdf520de02a1c07f7b6',
     rejected: '57d05fd70e6ad807729ba3c8',
   },
   Engage: {
     name: 'Engage',
+    id: '820KaDPs',
     inbox: '57d18c3c54a11e7fa1669923',
     rejected: '57d18c42aaefdd097ed3f901',
   },
   Universities: {
     name: 'Universities',
-    inbox: '579b614fd98e1f966d8b6a5d',
-    rejected: '579b614fd98e1f966d8b6a5c',
+    id: 'ncqUVXzN',
+    inbox: '57d188dbeabcaeb09c09321b',
+    rejected: '57d188d4705c5772f2bf7daa',
   },
   Test: {
     name: 'Test',
+    id: '579b614fd98e1f966d8b6a5a',
     inbox: '579b614fd98e1f966d8b6a5d',
     rejected: '579b614fd98e1f966d8b6a5c',
   },
