@@ -110,9 +110,9 @@ function cleanInbox(board) {
             setTimeout(() => {
               // to avoid hitting rate limit
               t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
-                if (err) winston.log(`error in board ${board.name}`, err1);
+                if (err1) winston.log(`error in board ${board.name}`, err1);
                 t.put(`/1/cards/${cardId}/idList`, { value: board.rejected }, (err2) => {
-                  if (err) winston.log(`error in board ${board.name}`, err2);
+                  if (err2) winston.log(`error in board ${board.name}`, err2);
                 });
               });
             }, 100);
@@ -149,9 +149,9 @@ function cleanRejected(board) {
                 setTimeout(() => {
                   // to avoid hitting rate limit
                   t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
-                    if (err) winston.log(`error in board ${board.name}`, err1);
+                    if (err1) winston.log(`error in board ${board.name}`, err1);
                     t.put(`/1/cards/${cardId}/closed`, { value: 'true' }, (err2) => {
-                      if (err) winston.log(`error in board ${board.name}`, err2);
+                      if (err2) winston.log(`error in board ${board.name}`, err2);
                     });
                   });
                 }, 100);
@@ -164,7 +164,7 @@ function cleanRejected(board) {
                 setTimeout(() => {
                   // to avoid hitting rate limit
                   t.post(`/1/cards/${cardId}/actions/comments`, { text: comment }, (err1) => {
-                    if (err) winston.log(`error in board ${board.name}`, err1);
+                    if (err1) winston.log(`error in board ${board.name}`, err1);
                   });
                 }, 100);
               });
